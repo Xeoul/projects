@@ -1,2 +1,2 @@
-# projects
-# School Work for Ref. or Archive
+# All the stuff I've written
+# Archive of CS Work
