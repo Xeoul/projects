@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1606520302 source:d:\school\arc\fall 2020\cisp 360\vehicle.cpp
+	<iostream>
+	<iomanip>
+	<cstring>
+	"vehicle.h"
+
+1606520237 d:\school\arc\fall 2020\cisp 360\vehicle.h
+
+1606520309 source:d:\school\arc\fall 2020\cisp 360\vehiclelib.cpp
+	<iostream>
+	<cstring>
+	"vehicle.h"
+

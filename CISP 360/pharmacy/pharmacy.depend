@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1606950724 source:d:\school\arc\fall 2020\cisp 360\main.cpp
+	<iostream>
+	"pharmacy.h"
+
+1606950675 d:\school\arc\fall 2020\cisp 360\pharmacy.h
+
+1606950705 source:d:\school\arc\fall 2020\cisp 360\pharmacy.cpp
+	<iostream>
+	<cstring>
+	<iomanip>
+	"pharmacy.h"
+
+1314894556 source:d:\school\arc\fall 2020\cisp 360\pharmacy\main.cpp
+	<iostream>
+
