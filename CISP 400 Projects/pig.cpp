@@ -48,7 +48,7 @@ void programGreeting()
 void menu(int randomNum)
 {
     int choice, total = 0, grandTotal = 0;
-    cout << "Choices available: (1 to roll, 2 to hold, 3 to quit.\n";
+    cout << "Choices available: 1 to roll, 2 to hold, 3 to quit.\n";
     cout << "\nEnter choice here: ";
     cin >> choice;
     if (choice == 1) {
