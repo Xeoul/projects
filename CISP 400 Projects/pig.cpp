@@ -58,7 +58,8 @@ void menu(int randomNum)
     getline(cin, name);
     cout << "The name you entered is: " << name << '\n';
 
-    int choice, turn = 0, total = 0, compTotal = 0;
+    int choice, turn = 0, userTotal = 0, compTotal = 0;
+    int user = d6();
     int computer = rand() % 6 + 1;
     bool quit;
     do {
@@ -90,20 +91,21 @@ void menu(int randomNum)
                 // for both players
                 turn += 1;
                 cout << "\nTurn: " << turn << '\n';
-                cout << name << " rolled: " << randomNum << '\n';
+                user = d6();
+                cout << name << " rolled: " << user << '\n';
                 computer = rand() % 6 + 1;
                 cout << "The computer rolled: " << computer << '\n';
                 
                 // User score check
                 // if user got any points added or not
                 if (randomNum > 1) {
-                    total += randomNum;
-                    cout << "\n" << name << " turn total is " << total;
+                    userTotal += user;
+                    cout << "\n" << name << " turn total is " << userTotal;
                     quit = false;
                 }   else if (randomNum == 1) {
-                    total += 0;
+                    userTotal += 0;
                     cout << "\n" << name <<  " rolled too low and your turn is passed.\n";
-                    cout << "Your total is " << total << '\n'; 
+                    cout << "Your total is " << userTotal << '\n'; 
                     quit = false;
                 }
 
@@ -121,7 +123,7 @@ void menu(int randomNum)
             // Specification B3 - HiScore on Heap
             // Totaling the scores for both the user and the computer
                 cout << "\nYou chose to hold.";
-                cout << "\nYour grand total is " << total << '\n';
+                cout << "\nYour grand total is " << userTotal << '\n';
 
                 // AI with code injection for restrictions being 1-3 hold and 4-6 roll again
                 computer = rand() % 6 + 1;
@@ -130,6 +132,7 @@ void menu(int randomNum)
                     cout << "\nCPU takes an additional " << computer << " points!\n";
                     cout << "Computer grand total is " << compTotal << '\n';
                 } else if (computer  <= 3) {
+                    compTotal += 0;
                     cout << "CPU gets no additional points.\n";
                 }
                 quit = false;
@@ -141,29 +144,70 @@ void menu(int randomNum)
                 // Specification B4 - Display High Score
                 // Game ends with user input on 3 and grabs both
                 // user and computers scores to total them in the end
-                cout << '\n' << name << " has " << total << " points." << '\n';
+                cout << '\n' << name << " has " << userTotal << " points." << '\n';
                 cout << "Computer has " << compTotal << " points "<< '\n';
                 cout << "\nThank you for playing the game.\nGoodbye.\n";
             }
             // Check whoever wins
-            if (total >= 100) {
-                cout << "Congrats " << name << " you won! With this much points: " << total << '\n';
+            if (userTotal >= 100) {
+                cout << "Congrats " << name << " you won! With this much points: " << userTotal << '\n';
                 cout << "Better luck next time computer: " << compTotal << " points." << '\n';
                 quit = true;
             } else if (compTotal >= 100) {
                 cout << "Congrats Computer you won! With this much points: " << compTotal << '\n';
-                cout << "Better luck next time "<< name << ": " << total << " points."  << '\n';
+                cout << "Better luck next time "<< name << ": " << userTotal << " points."  << '\n';
                 quit = true;
                 }
     } while (!quit);
 }
 
-// work on this tomorrow
 // Specification A1 - D6 Function
 // Generates a random number
 // With the help of cstdlib
 int d6()
 {
-    int randomNum = rand() % 6 + 1; 
+    int randomNum;
+    randomNum = rand() % 6 + 1; 
     return randomNum;
 }
+
+// Specification A2 - RandomNumber Function
+// generates a number between arguments lo and hi
+
+// int randomNumber()
+        // how to use function:
+        // call function while passing arguments
+        // returning it will provide the user with lo and hi numbers
+        // have them take place for the user score as passing by value
+        // for each time this function is called for
+/*{
+    int loTotal = 0, hiTotal = 0;
+    // Specification A3 - Protect RandomNumber() input
+    // ensures that only numbers can get through
+    // no other letters 
+    int lo = rand() % 6 + 1;
+    int hi = rand() % 6 + 1;
+    if (lo > hi) {
+        return -1;
+    } else if (!(lo < 1 || hi > 100)) {
+        return -1;
+    }
+    return lo, hi; // potentially use them instead of d6 function and pass them as arguments to function
+}*/
+
+// Specification A4 - Protect RandomNumber Output
+// using the function and making a safety net in case
+// of any bad inputs from the arguments
+// (shouldn't be the case since conditional statements are in place)
+
+// Example of code written below if randomNumber function is in use.
+/*randomNumber();
+int num;
+cout << "Enter a number here: ";
+cin >> num;
+while (!(cin >> num)) {
+    cout << "Error; A number must be inputted: ";
+    cin.clear();
+    cin.ignore(132,'\n');
+    return -2;
+}*/
