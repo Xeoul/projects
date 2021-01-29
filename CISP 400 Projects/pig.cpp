@@ -26,12 +26,11 @@ int main()
     // 2 being to hold for their turn and get no points
     // 3 to quit the whole program
     menu(randomNum);
-
-
     return 0;
 }
 
-
+// Greeting for the program and explains the whole program to the user
+// Doing this establishes the environment for the user and can choose what to do
 void programGreeting()
 {
     // Specification B2 - Display Due Date
@@ -49,6 +48,7 @@ void programGreeting()
     cout << "  | Holding it will add turn total to grand total \n  | & moves to next player\n";
 }
 
+// Menu for the user to choose from in order to play the game
 void menu(int randomNum)
 {
     // Specification C2 - Student Name
