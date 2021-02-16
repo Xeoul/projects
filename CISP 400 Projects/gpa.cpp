@@ -9,13 +9,20 @@ using namespace std;
 void programGreeting();
 void menu();
 
+// Specification A1 - Date class
+// all of the code inserted here (not sure what this class's purpose is)
+class Date {
+    // some code here
+};
+
 class Grade {
     private:
         // Specification B1 - Dynamic Array
         // Array storing the student's scores into it
         int* dArrayNum = new int[size];
+        char* dArrayLet = new char[size];
         char letter;
-        int size = 0, arraySize = 0, gradeInput;
+        int size = 0, gradeInput;
     public:
         void gradeLetter() {
         
@@ -27,38 +34,68 @@ class Grade {
             if (gradeInput >= 90) {
                 cout << "You added A to your grade list\n";
                 letter = 'A';
+                dArrayLet[size] = letter;
                 dArrayNum[size] = gradeInput;
                 size += 1;
             } else if (gradeInput >= 80 && gradeInput < 90) {
                 cout << "You added B to your grade list\n";
                 letter = 'B';
+                dArrayLet[size] = letter;
                 dArrayNum[size] = gradeInput;
                 size += 1;
             } else if (gradeInput >= 70 && gradeInput < 80) {
                 cout << "You added C to your grade list\n";
                 letter = 'C';
+                dArrayLet[size] = letter;
                 dArrayNum[size] = gradeInput;
                 size += 1;
             } else if (gradeInput >= 60 && gradeInput < 70) {
                 cout << "You added D to your grade list\n";
                 letter = 'D';
+                dArrayLet[size] = letter;
                 dArrayNum[size] = gradeInput;
                 size += 1;
             } else if (gradeInput <= 60) {
                 cout << "You added F to your grade list.\n";
                 letter = 'F';
+                dArrayLet[size] = letter;
                 dArrayNum[size] = gradeInput;
                 size += 1;
             }
-            cout << "Size is " << size << '\n';
         }
 
         // Specification C2 - Print Scores
         // After running grade input, 
         // all of the scores will be displayed onto the output
-        void printScores() {
-            for(int i = 0; i < size; i++) {
-                cout << dArrayNum[i] << '\n';
+        // Specification C3 - Letter Grades
+        // Also add the letters in the grade with the score corresponding to it
+        void printScoreAndLetters() {
+            for (int i = 0; i < size; i++) {
+                cout << dArrayNum[i] << " - " << dArrayLet[i] << '\n';
+            }
+        }
+
+        // Specification C4 - Compute GPA
+        // Grabs the %'age of the user scores and divides to provide the avg
+        void processGrades() {
+            int gradeTotal = 0;
+            for (int i = 0; i < size; i++) {
+                gradeTotal += dArrayNum[i];
+            }
+            int finalTotal = gradeTotal / size;
+            cout << "Your GPA is " << finalTotal << "%" << '\n';
+            // Specification B4 - Print Letter Grade
+            // Printing the GPA's overall grade once all calculated
+            if (finalTotal >= 90) {
+                cout << "GPA letter: A\n";
+            } else if (finalTotal >= 80 && finalTotal < 90) {
+                cout << "GPA letter: B\n";
+            } else if (finalTotal >= 70 && finalTotal < 80) {
+                cout << "GPA letter: C\n";
+            } else if (finalTotal >= 60 && finalTotal < 70) {
+                cout << "GPA letter: D\n";
+            } else {
+                cout << "GPA letter: F\n";
             }
         }
 
@@ -101,17 +138,21 @@ int main()
         // Specification C1 - Menu Driven Program
         // Grabs user input to guide the program into which segment is outputed
             if (choice == 1) {
+                // Add grades
                 grades.gradeLetter();
                 quit = false;
             }
             if (choice == 2) {
-                // print scores
-                grades.printScores();
+                // Display all grades
+                grades.printScoreAndLetters();
+                quit = false;
             }
             if (choice == 3) {
-                // add letter grades
+                // Process all grades
+                grades.processGrades();
             }
             if (choice == 4) {
+                // Quit the program
                 cout << "You chose to quit the program; Goodbye.\n";
                 quit = true;
             }
