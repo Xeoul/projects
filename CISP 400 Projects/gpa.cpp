@@ -10,9 +10,28 @@ void programGreeting();
 void menu();
 
 // Specification A1 - Date class
-// all of the code inserted here (not sure what this class's purpose is)
+// all of the code inserted here
 class Date {
-    // some code here
+    // Specification A2 - External date initialization
+    // setting the date up in terms of when the assignment is due
+    private:
+        string date;
+        // char letterGrade;
+    public:
+    // Specification A3 - Component Test Method in Date
+    // using getters and setters to display the date inside the main method
+        void setDate(string d) {
+            date = d;
+        }
+        string getDate() {
+            return date;
+        }
+        // Specification A4 - Component Test Grade Conversion
+        // double checking if grade outputs are correct
+        // code already validates proper output so commented out
+        /*void UnitTest {
+            // run A3 here    
+        }*/
 };
 
 class Grade {
@@ -104,7 +123,6 @@ class Grade {
 
 void programGreeting()
 {
-    cout << "This assignment is due on February 21, 2021.\n";
     cout << "Created by Vincent Lam.\n";
     cout << "\nWelcome to the GPA analyzer.\n";
     cout << "This program will grab your grades\n";
@@ -114,10 +132,13 @@ void programGreeting()
 int main()
 {
     Grade grades; // grades is an 'object'
+    Date date;
+    date.setDate("This assignment is due on February 21, 2021\n");
+    cout << date.getDate();
     programGreeting();
     int choice;
     bool quit = true;
-    cout << "\nChoices available: 1 to add a grade, 2 to display them, 3 to process.\n";
+    cout << "\nChoices available: 1 to add a grade, 2 to display them, 3 to process for the GPA.\n";
     cout << "If you want to quit, please type 4.\n";
     do {
         quit = true;
