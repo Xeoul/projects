@@ -40,6 +40,10 @@ class Inventory {
         int size = 0, num = 0;
 
     public:
+        char choice;
+        friend ostream &operator << (ostream &output, Inventory &i);
+        friend istream &operator >> (istream &input, Inventory &i);
+
         // Specification C3 - Resize Array - add to end
         // adding to the dynamic array 
         void addInventory()
@@ -113,6 +117,22 @@ class Inventory {
         }
 };
 
+// Specification A3 - Overload operator»
+// overloading output
+ostream &operator << (ostream &output, Inventory &i)
+{
+    output << "The letter you entered is " << i.choice << endl;
+    return output;
+}
+
+// Specification A2 - Overload operator«
+// overloading input
+istream &operator >> (istream &input, Inventory &i)
+{
+    input >> i.choice;
+    return input;
+}
+
 // Program greeting at the beginning of the output to guide user
 void ProgramGreeting()
 {
@@ -124,12 +144,19 @@ void ProgramGreeting()
 // Main function - guts of the program to run everything
 int main()
 {
+    // Specification A4 - UnitTest() method in main()
+    // test run to see if everything works
+    // after multiple runs, can confirm it does
+    //void UnitTest();
+    // calls all of the classes but can just call the methods
+
     Inventory obj;
     Date date;
     // Specification B2 - ComponentTest method in Date
     // method to run class
     date.setDate("This assignment is due on March 14, 2021\n");
     cout << date.getDate();
+    Inventory items;
     ProgramGreeting();
     char choice;
     bool quit;
@@ -144,40 +171,41 @@ int main()
     do {
         quit = true;
         cout << "\nEnter your choice here: ";
-        cin >> choice;
+        cin >> items;
+        cout << items;
         if (cin.fail()) {
             cin.clear();
             cin.ignore(256, '\n');
             quit = false;
             cout << "\nError, please enter the following letter to proceed.";
-        } else if (choice != 'A' && choice != 'D' && choice != 'S' && choice != 'D' && choice != 'Q' && choice != 'a' && choice != 'd' && choice != 'e' && choice != 's' && choice != 'q') {
+        } else if (items.choice != 'A' && items.choice != 'D' && items.choice != 'S' && items.choice != 'D' && items.choice != 'Q' && items.choice != 'a' && items.choice != 'd' && items.choice != 'e' && items.choice != 's' && items.choice != 'q') {
             quit = false;
             cout << "\nError; Your choice was not A, D, E, S, Q\n";
         }
         // Specification B3 - Menu Input Validation
         // Checking if the user did not put any garbage input
-        if (choice == 'A' || choice == 'a') {
+        if (items.choice == 'A' || items.choice == 'a') {
             cout << "You have chosen to add to inventory.\n";
             obj.addInventory();
             quit = false;
         }
-        if (choice == 'D' || choice == 'd') {
+        if (items.choice == 'D' || items.choice == 'd') {
             cout << "You have chosen to delete the last entry.\n";
             obj.deleteInv();
             quit = false;
         }
-        if (choice == 'E' || choice == 'e') {
+        if (items.choice == 'E' || items.choice == 'e') {
             obj.edit();
             quit = false;
         }
         
-        if (choice == 'S' || choice == 's') {
+        if (items.choice == 'S' || items.choice == 's') {
             cout << "You have chosen to display the inventory.\n";
             obj.showInventory();
             quit = false;        
         }
         
-        if (choice == 'Q' || choice == 'q') {
+        if (items.choice == 'Q' || items.choice == 'q') {
             cout << "You have chose to quit the program.\n";
             cout << "Goodbye.\n";
             quit = true;
