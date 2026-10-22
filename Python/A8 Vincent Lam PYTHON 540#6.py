@@ -24,7 +24,7 @@ def main():
         golfFile.write(playerName + ":" + playerScore + "\n") # writing each time
         index = index + 1 # continuing the loop
     print("Info saved to golf.dat")
-    golfFile.close # close off the file
+    golfFile.close() # close off the file
 
     # open for reading
     golfFile = open("golf.dat", 'r') 
